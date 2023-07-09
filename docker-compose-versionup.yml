@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  versionup:
+    image: annunciacaopinho/versionup:1.0.0
+    environment:
+      - ENVIROMENT=dev
+      - TYPE_VERSION=patch
+      - DESCRIPTION_TAG=dev_v
+      - REPOSITORY_URL=https://github.com/MarcosViniciusPinho/consume-versionup
+      - USER_NAME=MarcosViniciusPinho
+      - USER_EMAIL=marcosjava2008@gmail.com
+      - SSH_KNOWN_HOSTS=/ssh/known_hosts
+      - SSH_AUTH_SOCK=/ssh-agent.sock
+    volumes:
+      - ./versionup.yml:/app/versionup_old.yml
+      - ~/.ssh/ssh_versionup/id_rsa:/ssh/id_rsa
+      - ~/.ssh/ssh_versionup/known_hosts:/ssh/known_hosts
+      - $SSH_AUTH_SOCK:/ssh-agent.sock
